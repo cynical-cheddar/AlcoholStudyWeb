@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inaccessible Page</title>
+    <style>
+        body { background-color: yellow; font-family: Times New Roman, serif; color: lightgray; }
+        h1 { font-size: 60px; color: yellow; }
+        p { font-size: 20px; }
+        button { background-color: green; color: darkgreen; }
+        /* 1. Absolute positioning for content that causes overlap */
+        div { position: absolute; top: 50px; left: 50px; width: 300px; height: 200px; background: red; }
+        
+        /* 2. Disable text selection */
+        body { user-select: none; }
+        
+        /* 3. Use image backgrounds with text but no alt text */
+        .bg-image-text { background: url('text-image.jpg') no-repeat; color: transparent; }
+        
+        /* 4. Set outlines to none on focusable elements (like buttons) */
+        button:focus { outline: none; }
+        
+        /* 5. Use very small text that is difficult to read */
+        p.small-text { font-size: 8px; }
+        
+        /* 6. Fixed-width layout with no media queries */
+        body { width: 1000px; margin: 0 auto; }
+        
+        /* 7. Overuse of italics for emphasis */
+        em { font-style: italic; font-size: 30px; }
+        
+        /* 8. Content hidden offscreen with display:none */
+        .hidden-content { display: none; }
+        
+        /* 9. Non-contrast between text and background */
+        .low-contrast { background-color: lightgray; color: white; }
+        
+        /* 10. Unnecessary flashing elements */
+        .flashing-text { animation: flash 0.5s infinite; }
+        @keyframes flash { 50% { opacity: 0; } }
+        
+        /* 11. Mouse hover effects only, no focus state */
+        button:hover { background-color: yellow; }
+        
+        /* 12. Animations without reduced-motion settings */
+        .move { animation: move 3s infinite; }
+        @keyframes move { 0% { left: 0; } 100% { left: 100px; } }
+        
+        /* 13. Text that changes size on hover */
+        p:hover { font-size: 40px; }
+        
+        /* 14. Redundant text links without clear descriptions */
+        a { color: blue; text-decoration: underline; }
+        
+        /* 15. Autoplaying audio without controls */
+        audio { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Not Optimized for Accessibility</h1>
+    <p>This page has no semantic structure, poor color contrast, and lacks accessibility features like ARIA roles.</p>
+    
+    <div>Content that overlaps</div>
+    <p class="small-text">This is some very small text.</p>
+    <p><em>This is emphasized text using italics inappropriately.</em></p>
+    <p class="bg-image-text">Text over an image without alt attributes.</p>
+    <p class="low-contrast">This text has very low contrast with its background.</p>
+    <p class="flashing-text">Flashing text that may cause seizures.</p>
+    <p>Hidden content here: <span class="hidden-content">You won't see me!</span></p>
+    
+    <a href="#">Read more</a>
+    
+    <button>Click me</button>
+    
+    <audio autoplay>
+        <source src="sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = 'accessvtrust.html'; 
+        }, 30000); // Redirect after 30 seconds
+
+        // 16. Disable right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // 17. Form with no labels or accessibility hints
+        document.write('<form><input type="text" placeholder="Enter your name"><button type="submit">Submit</button></form>');
+        
+        // 18. Non-descriptive button labels
+        document.write('<button>Button</button>');
+        
+        // 19. Use inline styles to override user preferences
+        document.write('<div style="color: white; background-color: white;">Invisible text</div>');
+        
+        // 20. Use table layout for non-tabular data
+        document.write('<table><tr><td>This is not tabular data.</td></tr></table>');
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long Navigation Time</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            text-align: center;
+        }
+        .loading-message { 
+            font-size: 24px; 
+            color: red; 
+            margin-bottom: 20px;
+        }
+        .content { 
+            display: none; 
+        }
+        .loading-step {
+            display: none;
+            font-size: 18px;
+            color: blue;
+        }
+        .loading-step.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-message">Loading... Please wait.</div>
+
+    <div class="loading-step" id="step1">Step 1: Initializing...</div>
+    <div class="loading-step" id="step2">Step 2: Fetching Data...</div>
+    <div class="loading-step" id="step3">Step 3: Processing...</div>
+    <div class="loading-step" id="step4">Step 4: Almost Done...</div>
+
+    <div class="content">
+        <h1>Welcome to the Long Navigation Time Page</h1>
+        <p>This content took a long time to load.</p>
+    </div>
+    
+    <script>
+        // Sequentially show loading steps with longer delays
+        setTimeout(function() { document.getElementById('step1').classList.add('active'); }, 5000);   // 5 seconds
+        setTimeout(function() { document.getElementById('step2').classList.add('active'); }, 10000);  // 10 seconds
+        setTimeout(function() { document.getElementById('step3').classList.add('active'); }, 15000);  // 15 seconds
+        setTimeout(function() { document.getElementById('step4').classList.add('active'); }, 20000);  // 20 seconds
+
+        // Hide loading message and steps, show content in the last 5 seconds
+        setTimeout(function() {
+            document.querySelector('.loading-message').style.display = 'none';
+            document.querySelectorAll('.loading-step').forEach(step => step.style.display = 'none');
+            document.querySelector('.content').style.display = 'block';
+        }, 25000); // 25 seconds delay
+
+    </script>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = 'timevtrust.html'; 
+        }, 30000); // Redirect after 30 seconds
+    </script>
+</body>
+</html>
+

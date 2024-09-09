@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy and Security</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 10px; 
+            font-weight: bold;
+        }
+        input {
+            margin-bottom: 20px; 
+            width: 100%; 
+            padding: 8px; 
+            font-size: 16px;
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to your secure browsing experience.</h1>
+    <form id="questionsForm">
+        <!-- Questions will be dynamically inserted here -->
+    </form>
+    <button id="nextQuestionButton" style="display:none;">Next Question</button>
+    
+    <script>
+        const questions = [
+            "How much do you really value your privacy?",
+            "What does privacy mean to you?",
+            "Explain the distinction between privacy and security.",
+            "How do you balance privacy with convenience in your daily life?",
+            "In what ways do you think technology impacts your privacy?",
+            "What measures do you take to protect your personal information online?",
+            "How do you feel about companies tracking your online activities?",
+            "Describe a situation where you felt your privacy was compromised.",
+            "What are your thoughts on data sharing among apps and services?",
+            "How do you ensure your communications are private and secure?",
+            "Do you think privacy should be a fundamental right? Why or why not?",
+            "What role do you think encryption plays in protecting privacy?",
+            "How comfortable are you with sharing personal data for customized services?",
+            "What are your views on the government's role in protecting citizen privacy?",
+            "Can you describe a time when you had to make a trade-off between privacy and functionality?",
+            "How do you feel about biometric data collection for security purposes?",
+            "What steps do you take to protect your privacy when using public Wi-Fi?",
+            "How important is it for you to read privacy policies before using a new app or service?",
+            "What privacy settings do you find most useful on social media platforms?",
+            "How do you manage your digital footprint?",
+            "What are your concerns about the use of personal data in targeted advertising?",
+            "How do you feel about the sharing of data between different companies you use?",
+            "What privacy risks do you associate with cloud storage services?",
+            "How do you assess the trustworthiness of a website or online service?",
+            "What is your approach to managing privacy on mobile devices?",
+            "How do you think privacy concerns should be addressed by tech companies?",
+            "What are your thoughts on the right to be forgotten online?",
+            "How do you feel about sharing location data with apps and services?",
+            "What impact do you think social media has on personal privacy?"
+        ];
+
+        const form = document.getElementById('questionsForm');
+        const nextQuestionButton = document.getElementById('nextQuestionButton');
+        let currentQuestionIndex = 0;
+        let randomizedQuestions = [];
+
+        // Shuffle questions on page load
+        function shuffleQuestions() {
+            randomizedQuestions = questions
+                .map(q => ({ q, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ q }) => q);
+        }
+
+        // Function to render the current question
+        function showQuestion(index) {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+            if (index === 0) questionDiv.classList.add('active');
+
+            const label = document.createElement('label');
+            label.innerText = randomizedQuestions[index];
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.oninput = () => validateInput(input.value);
+
+            questionDiv.appendChild(label);
+            questionDiv.appendChild(input);
+            form.appendChild(questionDiv);
+        }
+
+        // Validate the input (minimum 50 characters)
+        function validateInput(input) {
+            if (input.length >= 50) {
+                nextQuestionButton.style.display = 'block';
+            } else {
+                nextQuestionButton.style.display = 'none';
+            }
+        }
+
+        // Move to the next question
+        function nextQuestion() {
+            const currentQuestion = document.querySelector('.question.active');
+            const input = currentQuestion.querySelector('input');
+
+            if (input.value.length >= 50) {
+                currentQuestion.classList.remove('active');
+                currentQuestionIndex++;
+                if (currentQuestionIndex < randomizedQuestions.length) {
+                    const nextQuestion = form.children[currentQuestionIndex];
+                    nextQuestion.classList.add('active');
+                    nextQuestionButton.style.display = 'none'; // Hide until input is valid
+                } else {
+                    nextQuestionButton.style.display = 'none';
+                    alert('All questions completed!');
+                }
+            } else {
+                alert('Please enter at least 50 characters.');
+            }
+        }
+
+        // Initialize questions and button event
+        shuffleQuestions();
+        randomizedQuestions.forEach((_, index) => showQuestion(index));
+        nextQuestionButton.addEventListener('click', nextQuestion);
+
+    </script>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = 'privacyvquality.html'; 
+        }, 30000); // Redirect after 30 seconds
+    </script>
+</body>
+</html>

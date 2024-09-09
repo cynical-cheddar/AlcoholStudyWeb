@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaotic Randomized Form</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Randomized Chaotic Form</h1>
+    <form id="chaotic-form">
+        <label id="label1" for="field1"></label>
+        <input type="text" id="field1" name="field1" />
+
+        <label id="label2" for="field2"></label>
+        <input type="text" id="field2" name="field2" />
+
+        <label id="label3" for="field3"></label>
+        <input type="text" id="field3" name="field3" />
+
+        <label id="label4" for="field4"></label>
+        <input type="text" id="field4" name="field4" />
+
+        <button id="submit">Submit... I guess?</button>
+    </form>
+
+    <script>
+        // Arrays of possible questions
+        const questions = {
+            field1: [
+                "Name-ish Thing (maybe?)",
+                "Who are you again?",
+                "Call yourself?",
+                "Your Alias?",
+                "What do people call you?",
+                "Moniker?",
+                "Alias...sort of?",
+                "How should we call you?"
+            ],
+            field2: [
+                "Weird Field",
+                "Something Random",
+                "An Inquiry",
+                "Does this even matter?",
+                "Just write something",
+                "Mystery Field",
+                "Totally Necessary Field",
+                "What even is this?"
+            ],
+            field3: [
+                "Another Random Thing",
+                "Unrelated Field",
+                "Important Question?",
+                "Maybe Answer This?",
+                "Write Whatever",
+                "Another Query",
+                "Meaningless, perhaps?",
+                "Completely Random"
+            ],
+            field4: [
+                "Final Question (maybe?)",
+                "Last one, we promise",
+                "What do you think?",
+                "Are we done?",
+                "Is this important?",
+                "Type something here?",
+                "A mystery awaits",
+                "Finalized!"
+            ]
+        };
+
+        // Randomize the question labels
+        function randomizeQuestions() {
+            Object.keys(questions).forEach(field => {
+                const randomIndex = Math.floor(Math.random() * questions[field].length);
+                document.getElementById(`label${field.slice(-1)}`).textContent = questions[field][randomIndex];
+            });
+        }
+
+        // Call the randomize function on page load
+        randomizeQuestions();
+
+        // Randomize input field sizes
+        document.querySelectorAll('input').forEach(input => {
+            const randomWidth = Math.floor(Math.random() * (500 - 100 + 1) + 100); // Random width between 100px and 500px
+            input.style.width = randomWidth + 'px';
+        });
+
+        // Confuse the user by changing the input requirements
+        setInterval(() => {
+            const randomLength = Math.floor(Math.random() * 20) + 5; // Random length between 5 and 20
+            document.querySelectorAll('input').forEach(input => {
+                input.required = Math.random() > 0.5; // Randomly require the field
+                input.maxLength = randomLength; // Set random maxLength
+            });
+        }, 3000); // Change every 3 seconds
+
+        // Make the submit button run away
+        const submitButton = document.getElementById('submit');
+        submitButton.addEventListener('mouseover', () => {
+            const randomX = Math.floor(Math.random() * (window.innerWidth - submitButton.offsetWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - submitButton.offsetHeight));
+            submitButton.style.left = randomX + 'px';
+            submitButton.style.top = randomY + 'px';
+        });
+    </script>
+     <script>
+        setTimeout(function() {
+            window.location.href = 'qualityvtrust.html'; 
+        }, 30000); // Redirect after 30 seconds
+    </script>
+</body>
+</html>
+
